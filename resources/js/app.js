@@ -18,3 +18,13 @@ $('.remove').on("click", function () {
         }
     });
 })
+
+$('.edit').on("click", function() {
+    $(this).addClass('off');
+    $(this).closest('div').find('.submit').removeClass('off');
+
+    let div = $(this).parent().parent();
+    div.find('.form-control').each(function(){
+        $(this).removeAttr('disabled');
+    })
+})

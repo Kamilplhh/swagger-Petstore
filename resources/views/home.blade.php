@@ -41,7 +41,7 @@
         <div class="row">
             <div class="col-md-6">
                 <form method="POST" class="text-center" action="{{ route('searchPetID') }}">
-                    @csrf
+                @csrf
                     <div class="form-group">
                         <label for="id">ID zwierzęcia</label>
                         <input class="form-control" type="number" min="0" step="1" name="id" id="id" placeholder="ID" required>
@@ -51,7 +51,7 @@
             </div>
             <div class="col-md-6">
                 <form method="POST" class="text-center" action="{{ route('searchPetStatus') }}">
-                    @csrf
+                @csrf
                     <div class="form-group">
                         <label for="status">Status (losowe 10 pozycji)</label>
                         <select class="form-control" id="status" name="status">
@@ -72,65 +72,75 @@
         @endif
 
         @if(isset($pet))
-        <div class="border my-3 py-1">
-            <div class="row text-center">
-                <div class="col-3">
-                    ID zwierzęcia:
-                </div>
-                <div class="col-3">
-                    Nazwa zwierzęcia:
-                </div>
-                <div class="col-3">
-                    Status zwierzęcia:
-                </div>
-                <div class="offset-1 col-2">
-                    <button type="submit" class="btn btn-danger remove" id="{{ $pet['id'] }}">Usuń</button>
-                </div>
-                <div class="col-3">
-                    <input class="form-control" type="number" name="id" min="0" step="1" id="id" value="{{ $pet['id'] }}" required disabled>    
-                </div>
-                <div class="col-3">
-                    <input class="form-control" type="text" name="name" id="name" placeholder="{{ $pet['name'] }}" required disabled>  
-                </div>
-                <div class="col-3">
-                    <select class="form-control" id="status" name="status" disabled>
+        <form method="POST" action="{{ route('addPet') }}">
+            @csrf
+            <div class="border my-3 py-1">
+                <div class="row text-center">
+                    <div class="col-3">
+                        ID zwierzęcia:
+                    </div>
+                    <div class="col-3">
+                        Nazwa zwierzęcia:
+                    </div>
+                    <div class="col-3">
+                        Status zwierzęcia:
+                    </div>
+                    <div class="offset-1 col-2">
+                        <button type="button" class="btn btn-danger remove" id="{{ $pet['id'] }}">Usuń</button>
+                    </div>
+                    <div class="col-3">
+                        <input class="form-control" type="number" name="id" min="0" step="1" id="id" value="{{ $pet['id'] }}" required disabled>
+                    </div>
+                    <div class="col-3">
+                        <input class="form-control" type="text" name="name" id="name" value="{{ $pet['name'] }}" required disabled>
+                    </div>
+                    <div class="col-3">
+                        <select class="form-control" id="status" name="status" disabled>
+                            @if(isset($pet['status']))
                             <option value="" selected disabled>{{ $pet['status'] }}</option>
+                            @endif
                             <option value="available">Available</option>
                             <option value="pending">Pending</option>
                             <option value="sold">Sold</option>
-                    </select>   
+                        </select>
+                    </div>
+                    <div class="offset-1 col-2">
+                        <button type="button" class="btn btn-primary edit">Edytuj</button>
+                        <button type="submit" class="btn btn-primary submit off">Zatwierdź</button>
+                    </div><br>
                 </div>
-                <div class="offset-1 col-2">
-                    <button type="submit" class="btn btn-primary edit">Edytuj</button>
-                </div><br>
             </div>
-        </div>
+        </form>
         @endif
 
         @if(isset($pets))
         @foreach($pets as $pet)
-        <div class="border my-3 py-1">
-            <div class="row text-center">
-                <div class="col-5">
-                    ID zwierzęcia:
+        <form method="POST" action="{{ route('addPet') }}">
+            @csrf
+            <div class="border my-3 py-1">
+                <div class="row text-center">
+                    <div class="col-5">
+                        ID zwierzęcia:
+                    </div>
+                    <div class="col-5">
+                        Nazwa zwierzęcia:
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-danger remove" id="{{ $pet['id'] }}">Usuń</button>
+                    </div>
+                    <div class="col-5">
+                        <input class="form-control" type="number" name="id" min="0" step="1" id="id" value="{{ $pet['id'] }}" required disabled>
+                    </div>
+                    <div class="col-5">
+                        <input class="form-control" type="text" name="name" id="name" value="{{ $pet['name'] }}" required disabled>
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-primary edit">Edytuj</button>
+                        <button type="submit" class="btn btn-primary submit off">Zatwierdź</button>
+                    </div><br>
                 </div>
-                <div class="col-5">
-                    Nazwa zwierzęcia:
-                </div>
-                <div class="col-2">
-                    <button type="submit" class="btn btn-danger remove" id="{{ $pet['id'] }}">Usuń</button>
-                </div>
-                <div class="col-5">
-                    <input class="form-control" type="number" name="id" min="0" step="1" id="id" value="{{ $pet['id'] }}" required disabled> 
-                </div>
-                <div class="col-5">
-                    <input class="form-control" type="text" name="name" id="name" placeholder="{{ $pet['name'] }}" required disabled> 
-                </div>
-                <div class="col-2">
-                    <button type="submit" class="btn btn-primary edit">Edytuj</button>
-                </div><br>
             </div>
-        </div>
+        </form>
         @endforeach
         @endif
 

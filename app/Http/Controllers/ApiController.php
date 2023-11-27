@@ -18,7 +18,7 @@ class ApiController extends Controller
         $response = Http::post('https://petstore.swagger.io/v2/pet', $pet);
 
         if ($response->successful()) {
-            $message = 'Zwierzę zostało dodane';
+            $message = 'Dane zostały wprowadzone';
         } else {
             $errorResponse = $response->json();
             $message = $errorResponse['message'];
