@@ -41,7 +41,7 @@
         <div class="row">
             <div class="col-md-6">
                 <form method="POST" class="text-center" action="{{ route('searchPetID') }}">
-                @csrf
+                    @csrf
                     <div class="form-group">
                         <label for="id">ID zwierzęcia</label>
                         <input class="form-control" type="number" min="0" step="1" name="id" id="id" placeholder="ID" required>
@@ -51,7 +51,7 @@
             </div>
             <div class="col-md-6">
                 <form method="POST" class="text-center" action="{{ route('searchPetStatus') }}">
-                @csrf
+                    @csrf
                     <div class="form-group">
                         <label for="status">Status (losowe 10 pozycji)</label>
                         <select class="form-control" id="status" name="status">
@@ -146,5 +146,4 @@
 
     </div>
 </body>
-
 </html>
