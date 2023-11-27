@@ -19,19 +19,19 @@
             <h4>Dodaj zwierzęcie</h4>
             <div class="form-group">
                 <label for="name">Nazwa</label>
-                <input class="form-control" type="text" id="name" placeholder="Nazwa zwierzęcia" required>
+                <input class="form-control" type="text" name="name" id="name" placeholder="Nazwa zwierzęcia" required>
             </div>
             <div class="form-group">
                 <label for="id">ID zwierzęcia</label>
-                <input class="form-control" type="number" id="id" placeholder="ID" required>
+                <input class="form-control" type="number" name="id" min="0" step="1" id="id" placeholder="ID" required>
             </div>
             <div class="form-group">
                 <label for="status">Status</label>
-                <select class="form-control" id="status">
+                <select class="form-control" name="status" id="status">
                     <option value="" selected disabled>Status</option>
-                    <option value="1">Available</option>
-                    <option value="2">Pending</option>
-                    <option value="3">Sold</option>
+                    <option value="Available">Available</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Sold">Sold</option>
                 </select>
             </div>
             <button type="submit" class="btn btn-success">Dodaj</button>
@@ -44,7 +44,7 @@
                 @csrf
                     <div class="form-group">
                         <label for="id">ID zwierzęcia</label>
-                        <input class="form-control" type="number" id="id" placeholder="ID" required>
+                        <input class="form-control" type="number" min="0" step="1" id="id" placeholder="ID" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Wyszukaj</button>
                 </form>
@@ -55,9 +55,9 @@
                     <div class="form-group">
                         <label for="status">Status</label>
                         <select class="form-control" id="status">
-                            <option value="1">Available</option>
-                            <option value="2">Pending</option>
-                            <option value="3">Sold</option>
+                            <option value="Available">Available</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Sold">Sold</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Wyszukaj</button>
