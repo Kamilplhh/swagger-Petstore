@@ -46,7 +46,6 @@ class ApiController extends Controller
             $message = 'Wystąpił błąd: ' . $e->getMessage();
             return view('home', compact('message'));
         }
-
     }
 
     public function searchPetByStatus(Request $request){

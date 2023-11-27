@@ -74,23 +74,34 @@
         @if(isset($pet))
         <div class="border my-3 py-1">
             <div class="row text-center">
-                <div class="col-4">
+                <div class="col-3">
                     ID zwierzęcia:
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                     Nazwa zwierzęcia:
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                     Status zwierzęcia:
                 </div>
-                <div class="col-4">
-                    {{ $pet['id'] }}
+                <div class="offset-1 col-2">
+                    <button type="submit" class="btn btn-danger" id="{{ $pet['id'] }}">Usuń</button>
                 </div>
-                <div class="col-4">
-                    {{ $pet['name'] }}
+                <div class="col-3 id">
+                    <input class="form-control" type="number" name="id" min="0" step="1" id="id" placeholder="{{ $pet['id'] }}" required disabled>    
                 </div>
-                <div class="col-4">
-                    {{ $pet['status'] }}
+                <div class="col-3">
+                    <input class="form-control" type="text" name="name" id="name" placeholder="{{ $pet['name'] }}" required disabled>  
+                </div>
+                <div class="col-3">
+                    <select class="form-control" id="status" name="status" disabled>
+                            <option value="" selected disabled>{{ $pet['status'] }}</option>
+                            <option value="available">Available</option>
+                            <option value="pending">Pending</option>
+                            <option value="sold">Sold</option>
+                    </select>   
+                </div>
+                <div class="offset-1 col-2">
+                    <button type="submit" class="btn btn-primary">Edytuj</button>
                 </div><br>
             </div>
         </div>
@@ -100,17 +111,23 @@
         @foreach($pets as $pet)
         <div class="border my-3 py-1">
             <div class="row text-center">
-                <div class="col-6">
+                <div class="col-5">
                     ID zwierzęcia:
                 </div>
-                <div class="col-6">
+                <div class="col-5">
                     Nazwa zwierzęcia:
                 </div>
-                <div class="col-6">
-                    {{ $pet['id'] }}
+                <div class="col-2">
+                    <button type="submit" class="btn btn-danger" id="{{ $pet['id'] }}">Usuń</button>
+                </div><br>
+                <div class="col-5 id">
+                    <input class="form-control" type="number" name="id" min="0" step="1" id="id" placeholder="{{ $pet['id'] }}" required disabled> 
                 </div>
-                <div class="col-6">
-                    {{ $pet['name'] }}
+                <div class="col-5">
+                    <input class="form-control" type="text" name="name" id="name" placeholder="{{ $pet['name'] }}" required disabled> 
+                </div>
+                <div class="col-2">
+                    <button type="submit" class="btn btn-primary">Edytuj</button>
                 </div><br>
             </div>
         </div>
