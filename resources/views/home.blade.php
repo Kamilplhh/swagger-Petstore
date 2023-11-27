@@ -14,7 +14,8 @@
 
 <body>
     <div class="container pt-2">
-        <form method="POST" class="text-center">
+        <form method="POST" class="text-center" action="{{ route('addPet') }}">
+        @csrf
             <h4>Dodaj zwierzęcie</h4>
             <div class="form-group">
                 <label for="name">Nazwa</label>
@@ -39,7 +40,8 @@
         <h4 class="text-center pt-2">Wyszukaj zwierzęcie po statusie lub po ID</h4>
         <div class="row">
             <div class="col-md-6">
-                <form method="POST" class="text-center">
+                <form method="POST" class="text-center" action="{{ route('searchPet') }}">
+                @csrf
                     <div class="form-group">
                         <label for="id">ID zwierzęcia</label>
                         <input class="form-control" type="number" id="id" placeholder="ID" required>
@@ -48,7 +50,8 @@
                 </form>
             </div>
             <div class="col-md-6">
-                <form method="POST" class="text-center">
+                <form method="POST" class="text-center" action="{{ route('searchPet') }}">
+                @csrf
                     <div class="form-group">
                         <label for="status">Status</label>
                         <select class="form-control" id="status">
@@ -61,6 +64,12 @@
                 </form>
             </div>
         </div>
+
+        @if(isset($message))
+        <div class="alert alert-warning text-center" role="alert">
+            {{ $message }}
+        </div>
+        @endif
 
     </div>
 </body>
