@@ -84,10 +84,10 @@
                     Status zwierzęcia:
                 </div>
                 <div class="offset-1 col-2">
-                    <button type="submit" class="btn btn-danger" id="{{ $pet['id'] }}">Usuń</button>
+                    <button type="submit" class="btn btn-danger remove" id="{{ $pet['id'] }}">Usuń</button>
                 </div>
-                <div class="col-3 id">
-                    <input class="form-control" type="number" name="id" min="0" step="1" id="id" placeholder="{{ $pet['id'] }}" required disabled>    
+                <div class="col-3">
+                    <input class="form-control" type="number" name="id" min="0" step="1" id="id" value="{{ $pet['id'] }}" required disabled>    
                 </div>
                 <div class="col-3">
                     <input class="form-control" type="text" name="name" id="name" placeholder="{{ $pet['name'] }}" required disabled>  
@@ -101,7 +101,7 @@
                     </select>   
                 </div>
                 <div class="offset-1 col-2">
-                    <button type="submit" class="btn btn-primary">Edytuj</button>
+                    <button type="submit" class="btn btn-primary edit">Edytuj</button>
                 </div><br>
             </div>
         </div>
@@ -118,16 +118,16 @@
                     Nazwa zwierzęcia:
                 </div>
                 <div class="col-2">
-                    <button type="submit" class="btn btn-danger" id="{{ $pet['id'] }}">Usuń</button>
-                </div><br>
-                <div class="col-5 id">
-                    <input class="form-control" type="number" name="id" min="0" step="1" id="id" placeholder="{{ $pet['id'] }}" required disabled> 
+                    <button type="submit" class="btn btn-danger remove" id="{{ $pet['id'] }}">Usuń</button>
+                </div>
+                <div class="col-5">
+                    <input class="form-control" type="number" name="id" min="0" step="1" id="id" value="{{ $pet['id'] }}" required disabled> 
                 </div>
                 <div class="col-5">
                     <input class="form-control" type="text" name="name" id="name" placeholder="{{ $pet['name'] }}" required disabled> 
                 </div>
                 <div class="col-2">
-                    <button type="submit" class="btn btn-primary">Edytuj</button>
+                    <button type="submit" class="btn btn-primary edit">Edytuj</button>
                 </div><br>
             </div>
         </div>
