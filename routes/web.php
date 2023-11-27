@@ -20,4 +20,6 @@ Route::get('/', function () {
 
 Route::post('addPet', [ApiController::class, 'addPet'])->name('addPet'); 
 
-Route::post('searchPet', [ApiController::class, 'searchPet'])->name('searchPet'); 
+Route::post('searchPetStatus', [ApiController::class, 'searchPetByStatus'])->name('searchPetStatus'); 
+
+Route::post('searchPetID', [ApiController::class, 'searchPetByID'])->name('searchPetID'); 

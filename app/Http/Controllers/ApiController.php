@@ -23,12 +23,57 @@ class ApiController extends Controller
             $errorResponse = $response->json();
             $message = $errorResponse['message'];
         }
-
+        
         return view('home', compact('message'));
     }
 
-    public function searchPet(){
+    public function searchPetByID(Request $request){
+        $request->validate([
+            'id' => ['required', 'numeric', 'min:0'],
+        ]);
 
-        return view('home', compact('pets'));
+        try {
+            $response = Http::get('https://petstore.swagger.io/v2/pet/'. $request['id']);
+
+            if ($response->successful()) {
+                $pet = $response->json();
+                return view('home', compact('pet'));
+            } else {
+                $message = 'Zwierze nie zostało odnalezione';
+                return view('home', compact('message'));
+            }
+        } catch (Exception $e) {
+            $message = 'Wystąpił błąd: ' . $e->getMessage();
+            return view('home', compact('message'));
+        }
+
+    }
+
+    public function searchPetByStatus(Request $request){
+        $request->validate([
+            'status' => ['required', 'string', 'max:255'],
+        ]);
+
+        try {
+            $response = Http::get('https://petstore.swagger.io/v2/pet/findByStatus?status='. $request['status']);
+
+            if ($response->successful()) {
+                $Array = $response->json();
+                
+                if (count($Array) >= 10) {
+                    $pets = collect($Array)->random(10);
+                    return view('home', compact('pets'));
+                } else {
+                    $pets = $response->json();
+                    return view('home', compact('pets'));
+                }
+            } else {
+                $message = 'Zwierze nie zostało odnalezione';
+                return view('home', compact('message'));
+            }
+        } catch (Exception $e) {
+            $message = 'Wystąpił błąd: ' . $e->getMessage();
+            return view('home', compact('message'));
+        }
     }
 }

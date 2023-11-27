@@ -15,7 +15,7 @@
 <body>
     <div class="container pt-2">
         <form method="POST" class="text-center" action="{{ route('addPet') }}">
-        @csrf
+            @csrf
             <h4>Dodaj zwierzęcie</h4>
             <div class="form-group">
                 <label for="name">Nazwa</label>
@@ -29,9 +29,9 @@
                 <label for="status">Status</label>
                 <select class="form-control" name="status" id="status">
                     <option value="" selected disabled>Status</option>
-                    <option value="Available">Available</option>
-                    <option value="Pending">Pending</option>
-                    <option value="Sold">Sold</option>
+                    <option value="available">Available</option>
+                    <option value="pending">Pending</option>
+                    <option value="sold">Sold</option>
                 </select>
             </div>
             <button type="submit" class="btn btn-success">Dodaj</button>
@@ -40,24 +40,24 @@
         <h4 class="text-center pt-2">Wyszukaj zwierzęcie po statusie lub po ID</h4>
         <div class="row">
             <div class="col-md-6">
-                <form method="POST" class="text-center" action="{{ route('searchPet') }}">
-                @csrf
+                <form method="POST" class="text-center" action="{{ route('searchPetID') }}">
+                    @csrf
                     <div class="form-group">
                         <label for="id">ID zwierzęcia</label>
-                        <input class="form-control" type="number" min="0" step="1" id="id" placeholder="ID" required>
+                        <input class="form-control" type="number" min="0" step="1" name="id" id="id" placeholder="ID" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Wyszukaj</button>
                 </form>
             </div>
             <div class="col-md-6">
-                <form method="POST" class="text-center" action="{{ route('searchPet') }}">
-                @csrf
+                <form method="POST" class="text-center" action="{{ route('searchPetStatus') }}">
+                    @csrf
                     <div class="form-group">
-                        <label for="status">Status</label>
-                        <select class="form-control" id="status">
-                            <option value="Available">Available</option>
-                            <option value="Pending">Pending</option>
-                            <option value="Sold">Sold</option>
+                        <label for="status">Status (losowe 10 pozycji)</label>
+                        <select class="form-control" id="status" name="status">
+                            <option value="available">Available</option>
+                            <option value="pending">Pending</option>
+                            <option value="sold">Sold</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Wyszukaj</button>
@@ -66,9 +66,55 @@
         </div>
 
         @if(isset($message))
-        <div class="alert alert-warning text-center" role="alert">
+        <div class="alert alert-warning text-center pt-2" role="alert">
             {{ $message }}
         </div>
+        @endif
+
+        @if(isset($pet))
+        <div class="border my-3 py-1">
+            <div class="row text-center">
+                <div class="col-4">
+                    ID zwierzęcia:
+                </div>
+                <div class="col-4">
+                    Nazwa zwierzęcia:
+                </div>
+                <div class="col-4">
+                    Status zwierzęcia:
+                </div>
+                <div class="col-4">
+                    {{ $pet['id'] }}
+                </div>
+                <div class="col-4">
+                    {{ $pet['name'] }}
+                </div>
+                <div class="col-4">
+                    {{ $pet['status'] }}
+                </div><br>
+            </div>
+        </div>
+        @endif
+
+        @if(isset($pets))
+        @foreach($pets as $pet)
+        <div class="border my-3 py-1">
+            <div class="row text-center">
+                <div class="col-6">
+                    ID zwierzęcia:
+                </div>
+                <div class="col-6">
+                    Nazwa zwierzęcia:
+                </div>
+                <div class="col-6">
+                    {{ $pet['id'] }}
+                </div>
+                <div class="col-6">
+                    {{ $pet['name'] }}
+                </div><br>
+            </div>
+        </div>
+        @endforeach
         @endif
 
     </div>
