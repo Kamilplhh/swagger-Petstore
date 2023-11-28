@@ -92,12 +92,16 @@
                         <input class="form-control" type="number" name="id" min="0" step="1" id="id" value="{{ $pet['id'] }}" required disabled>
                     </div>
                     <div class="col-3">
-                        <input class="form-control" type="text" name="name" id="name" value="{{ $pet['name'] }}" required disabled>
+                        @if(isset($pet['name']))
+                            <input class="form-control" type="text" name="name" id="name" value="{{ $pet['name'] }}" required disabled>
+                        @else
+                            <input class="form-control" type="text" name="name" id="name" value="Brak" required disabled>
+                        @endif
                     </div>
                     <div class="col-3">
                         <select class="form-control" id="status" name="status" disabled>
                             @if(isset($pet['status']))
-                            <option value="" selected disabled>{{ $pet['status'] }}</option>
+                                <option value="" selected disabled>{{ $pet['status'] }}</option>
                             @endif
                             <option value="available">Available</option>
                             <option value="pending">Pending</option>
@@ -132,7 +136,11 @@
                         <input class="form-control" type="number" name="id" min="0" step="1" id="id" value="{{ $pet['id'] }}" required disabled>
                     </div>
                     <div class="col-5">
-                        <input class="form-control" type="text" name="name" id="name" value="{{ $pet['name'] }}" required disabled>
+                        @if(isset($pet['name']))
+                            <input class="form-control" type="text" name="name" id="name" value="{{ $pet['name'] }}" required disabled>
+                        @else
+                            <input class="form-control" type="text" name="name" id="name" value="Brak" required disabled>
+                        @endif
                     </div>
                     <div class="col-2">
                         <button type="button" class="btn btn-primary edit">Edytuj</button>
@@ -146,4 +154,5 @@
 
     </div>
 </body>
+
 </html>
